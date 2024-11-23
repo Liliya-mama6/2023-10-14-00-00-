@@ -1,10 +1,14 @@
-import unittest
-import ege
-import kontest
+from fastapi import FastAPI
+from routers import task, user
 
 
-case=unittest.TestSuite()
-case.addTest(unittest.TestLoader().loadTestsFromTestCase(ege.TournamentTest))
-case.addTest(unittest.TestLoader().loadTestsFromTestCase(kontest.RunnerTest))
-text=unittest.TextTestRunner(verbosity=2)
-text.run(case)
+app=FastAPI()
+
+
+@app.get('/')
+def welcome()->dict:
+    return {'message':'Welcome to Taskmanager'}
+
+
+app.include_router(task.router)
+app.include_router(user.router1)
