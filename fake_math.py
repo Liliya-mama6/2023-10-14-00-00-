@@ -1,29 +1,26 @@
-import urban
-import unittest
+from fastapi import APIRouter
+
+router=APIRouter(prefix='/task', tags=['task'])
+
+@router.get('/')
+def all_tasks():
+    pass
+
+@router.get('/task_id')
+def task_by_id():
+    pass
 
 
-class RunnerTest(unittest.TestCase):
-    is_frozen = False
+@router.post('/create')
+def create_task():
+    pass
 
-    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
-    def test_walk(self):
-        a = urban.Runner('turtle')
-        for i in range(10):
-            a.walk()
-        self.assertEqual(a.distance, 50)
 
-    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
-    def test_run(self):
-        a = urban.Runner('frog')
-        for i in range(10):
-            a.run()
-        self.assertEqual(a.distance, 100)
+@router.put('/update')
+def update_task():
+    pass
 
-    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
-    def test_challenge(self):
-        a = urban.Runner('pomidurov')
-        b = urban.Runner('oguchok')
-        for i in range(10):
-            a.run()
-            b.walk()
-        self.assertNotEqual(a.distance, b.distance)
+
+@router.delete('/delete')
+def delete_task():
+    pass
